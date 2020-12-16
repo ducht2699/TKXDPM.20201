@@ -106,7 +106,7 @@ public class HomeScreen extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("ECO BIKE RENTAL");
 
-        jLabel2.setText("GROUP 11");
+        jLabel2.setText("GROUP 7");
 
         logoutButton.setText("Log out");
         logoutButton.addActionListener(new java.awt.event.ActionListener() {

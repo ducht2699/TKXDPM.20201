@@ -12,15 +12,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
- * @author Nguyen Thanh Long
+ * @author Hoang Duc
  */
 public class DataBase {
 
     private final int PORT = 3306;
-    private final String DB_NAME = "tkxdpm_nhom11";
+    private final String DB_NAME = "tkxdpm";
     private final String URL = "jdbc:mysql://localhost:" + PORT + "/" + DB_NAME;
     private final String USER = "root";
     private final String PASS = "";
@@ -58,4 +59,14 @@ public class DataBase {
         ResultSet rs = statement.getGeneratedKeys();
         return rs;
     }
+
+    public void delete(String sqlString, int arg) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(sqlString);
+
+        statement.setInt(1, arg);
+
+        statement.execute();
+    }
+    
+
 }

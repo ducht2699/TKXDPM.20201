@@ -12,11 +12,21 @@ package com.hust.group11.ecobikerentalgroup11.Entity;
 public class User {
     private String username, password;
     private int userId, status;
+    private int isAdmin;
 
-    public User(int userId, String username, int status) {
+    public User(int userId, String username, int status, int isAdmin) {
         this.userId = userId;
         this.username = username;
         this.status = status;
+        this.isAdmin = isAdmin;
+    }
+
+    public int isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     public int getStatus() {
