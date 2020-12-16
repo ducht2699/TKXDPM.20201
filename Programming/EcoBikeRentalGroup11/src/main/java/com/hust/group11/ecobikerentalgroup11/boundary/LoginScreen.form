@@ -31,7 +31,7 @@
                       <EmptySpace min="-2" pref="219" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnCreateAccount" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="loginButton" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -74,7 +74,7 @@
               <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="loginButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCreateAccount" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
           </Group>
@@ -99,7 +99,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="loginButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Log In"/>
+        <Property name="text" type="java.lang.String" value="Login"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginActionPerformed"/>
@@ -113,10 +113,13 @@
         <Property name="text" type="java.lang.String" value="Login Information"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnCreateAccount">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Sign Up"/>
+        <Property name="text" type="java.lang.String" value="Create Account"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateAccountActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="passwordField">
       <Properties>

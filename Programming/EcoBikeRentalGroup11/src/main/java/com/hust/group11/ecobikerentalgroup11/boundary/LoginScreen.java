@@ -5,7 +5,8 @@
  */
 package com.hust.group11.ecobikerentalgroup11.boundary;
 
-import com.hust.group11.ecobikerentalgroup11.controller.LoginController;
+import com.hust.group11.ecobikerentalgroup11.MainEntry;
+import com.hust.group11.ecobikerentalgroup11.controller.UsersController;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -15,14 +16,14 @@ import java.awt.event.KeyEvent;
  */
 public class LoginScreen extends javax.swing.JFrame {
 
-    public LoginController lc;
+    public UsersController usersController;
 
     /**
      * Creates new form LoginScreen
      */
     public LoginScreen() {
         initComponents();
-        this.lc = new LoginController();
+        this.usersController = new UsersController();
     }
 
     /**
@@ -37,7 +38,7 @@ public class LoginScreen extends javax.swing.JFrame {
         usernameField = new javax.swing.JTextField();
         loginButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnCreateAccount = new javax.swing.JButton();
         passwordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,7 +51,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
         usernameField.setText("ducht");
 
-        loginButton.setText("Log In");
+        loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginActionPerformed(evt);
@@ -60,7 +61,12 @@ public class LoginScreen extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Login Information");
 
-        jButton1.setText("Sign Up");
+        btnCreateAccount.setText("Create Account");
+        btnCreateAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateAccountActionPerformed(evt);
+            }
+        });
 
         passwordField.setText("hthust");
 
@@ -74,7 +80,7 @@ public class LoginScreen extends javax.swing.JFrame {
                         .addGap(219, 219, 219)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnCreateAccount)
                                 .addGap(27, 27, 27)
                                 .addComponent(loginButton))
                             .addGroup(layout.createSequentialGroup()
@@ -106,7 +112,7 @@ public class LoginScreen extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginButton)
-                    .addComponent(jButton1))
+                    .addComponent(btnCreateAccount))
                 .addGap(116, 116, 116))
         );
 
@@ -115,15 +121,20 @@ public class LoginScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        lc.handleLogin(usernameField.getText(), passwordField.getText(), this);
+        usersController.handleLogin(usernameField.getText(), passwordField.getText(), this);
     }//GEN-LAST:event_loginActionPerformed
+
+    private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
+        // TODO add your handling code here:
+        MainEntry.move(this, new SignUpScreen(this));
+    }//GEN-LAST:event_btnCreateAccountActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCreateAccount;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton loginButton;
     private javax.swing.JPasswordField passwordField;
