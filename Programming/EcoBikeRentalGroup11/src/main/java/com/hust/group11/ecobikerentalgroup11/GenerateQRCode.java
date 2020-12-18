@@ -71,7 +71,7 @@ public class GenerateQRCode {
                     graphics.fillRect(i, j, 1, 1);
                 }
             }
-        }
+        }  
         ImageIO.write(image, fileType, qrFile);
     }
 

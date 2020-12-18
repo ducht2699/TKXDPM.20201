@@ -9,7 +9,7 @@ import com.hust.group11.ecobikerentalgroup11.DataBase;
 import com.hust.group11.ecobikerentalgroup11.Entity.User;
 import com.hust.group11.ecobikerentalgroup11.MainEntry;
 import com.hust.group11.ecobikerentalgroup11.boundary.HomeScreen;
-import com.hust.group11.ecobikerentalgroup11.boundary.admin.HomeScreenAdmin;
+import com.hust.group11.ecobikerentalgroup11.boundary.admin.AdminHomeScreen;
 import com.hust.group11.ecobikerentalgroup11.boundary.ScanCodeScreen;
 import com.hust.group11.ecobikerentalgroup11.boundary.SignUpScreen;
 import java.util.logging.Level;
@@ -50,7 +50,7 @@ public class UsersController {
                     MainEntry.move(backScreen, hc);
                     JOptionPane.showMessageDialog(hc, "You have successfully logged in!");
                 } else if (user.isAdmin() == 1) {
-                    HomeScreenAdmin hc = new HomeScreenAdmin(user, backScreen);
+                    AdminHomeScreen hc = new AdminHomeScreen(user, backScreen);
                     MainEntry.move(backScreen, hc);
                     JOptionPane.showMessageDialog(hc, "You have successfully logged in!");
                 }

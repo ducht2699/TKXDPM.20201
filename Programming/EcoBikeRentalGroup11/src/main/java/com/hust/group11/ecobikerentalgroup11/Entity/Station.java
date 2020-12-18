@@ -79,5 +79,11 @@ public class Station {
         this.stationName = stationName;
     }
 
+    @Override
+    public String toString() {
+        return this.stationName; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 
 }

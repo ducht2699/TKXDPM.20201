@@ -202,7 +202,7 @@ public class AdminEditStationScreen extends javax.swing.JFrame {
 
     private void buttonViewbikelistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViewbikelistActionPerformed
         try {
-            MainEntry.move(this, new AdminViewListBikeScreen(this, user, station));
+            MainEntry.move(this, new AdminManageBikes(this, user, station));
         } catch (SQLException ex) {
             Logger.getLogger(AdminEditStationScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -221,7 +221,7 @@ public class AdminEditStationScreen extends javax.swing.JFrame {
         try {
             db.update(sql);
             JOptionPane.showMessageDialog(this, "Saved!");
-            MainEntry.move(this, new AdminManageStation(user, new HomeScreenAdmin(user, null)));
+            MainEntry.move(this, new AdminManageStation(user, new AdminHomeScreen(user, null)));
         } catch (SQLException ex) {
             System.out.println("ERROR! SQL");
             Logger.getLogger(AdminEditStationScreen.class.getName()).log(Level.SEVERE, null, ex);

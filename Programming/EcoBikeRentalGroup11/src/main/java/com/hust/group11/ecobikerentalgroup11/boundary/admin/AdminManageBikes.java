@@ -30,7 +30,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Nguyen Hai Long
  */
-public class AdminViewListBikeScreen extends javax.swing.JFrame {
+public class AdminManageBikes extends javax.swing.JFrame {
 
     /**
      * Creates new form ViewListBikeScreen
@@ -43,15 +43,20 @@ public class AdminViewListBikeScreen extends javax.swing.JFrame {
     private DockingPoint dp;
     private User user;
 
-    public AdminViewListBikeScreen(JFrame backScreen, User user, Station station) throws SQLException {
+    public AdminManageBikes(JFrame backScreen, User user, Station station) throws SQLException {
         initComponents();
-        this.station = station;
         stationNameTilte.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         stationNameTilte.setText(station.getStationName());
         this.backScreen = backScreen;
         this.db = new DataBase();
         this.user = user;
-        showListBike();
+        if (station.getStationId() != -1) {
+            this.station = station;
+            showListBike();
+        } else {
+            showAllBike();
+        }
+        
         sortTable();
     }
 
@@ -181,8 +186,18 @@ public class AdminViewListBikeScreen extends javax.swing.JFrame {
         });
 
         btnAddBike.setText("Add");
+        btnAddBike.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddBikeActionPerformed(evt);
+            }
+        });
 
         btnDeleteBike.setText("Delete");
+        btnDeleteBike.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteBikeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -283,7 +298,7 @@ private void sortTable() {
 //                    dp.setStatus(rs.getInt("status"));
 //                }
 //            } catch (SQLException ex) {
-//                Logger.getLogger(AdminViewListBikeScreen.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(AdminManageBikes.class.getName()).log(Level.SEVERE, null, ex);
 //            }
 //            MainEntry.move(this, new RentBikeScreen(user, dp, backScreen));
 //            System.out.println("value: " + value);;
@@ -293,6 +308,20 @@ private void sortTable() {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         MainEntry.move(this, backScreen);
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void btnAddBikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBikeActionPerformed
+        // TODO add your handling code here:
+        try {
+            //create new form add station
+            MainEntry.move(this, new AdminAddBike(user, this));
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminManageStation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAddBikeActionPerformed
+
+    private void btnDeleteBikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteBikeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteBikeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
@@ -305,4 +334,40 @@ private void sortTable() {
     private javax.swing.JTable listBikeTable;
     private javax.swing.JLabel stationNameTilte;
     // End of variables declaration//GEN-END:variables
+
+    private void showAllBike() {
+         stationNameTilte.setText("Bikes List");
+        arrBike = new ArrayList<>();
+        try {
+            String sqlString = "select * from bike";
+            ResultSet rs = db.query(sqlString);
+            while (rs.next()) {
+                Bike bike = new Bike(0, 0, 0, 0, "", "", "", "", "", "", 1);
+                bike.setBikeId(rs.getInt("bike_id"));
+                bike.setStationId(rs.getInt("station_id"));
+                bike.setLockId(rs.getInt("lock_id"));
+                bike.setValue(rs.getInt("value_of_bike"));
+                bike.setLicensePlate(rs.getString("plate_license"));
+                bike.setModel(rs.getString("model"));
+                bike.setType(rs.getString("type"));
+                bike.setBattery(rs.getString("battery"));
+                bike.setBrand(rs.getString("brand"));
+                bike.setImage(rs.getString("image"));
+                bike.setStatus(rs.getInt("status"));
+                arrBike.add(bike);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+        DefaultTableModel model = (DefaultTableModel) listBikeTable.getModel();
+        model.setRowCount(0);
+        System.out.println("set Model here");
+        for (int i = 0; i < arrBike.size(); i++) {
+            Bike b = arrBike.get(i);
+            String status = b.getStatus() == 0 ? "Available" : "Busy";
+            model.addRow(new Object[]{i, b.getLicensePlate(), b.getModel(), b.getType(),
+                b.getLockId(), b.getBattery() + " %", status, b.getValue() + Constants.MONEY_UNIT});
+        }
+        model.fireTableDataChanged();
+    }
 }

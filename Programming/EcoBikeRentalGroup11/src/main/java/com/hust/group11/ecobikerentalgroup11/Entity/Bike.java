@@ -117,6 +117,11 @@ public class Bike {
     public void setBrand(String brand) {
         this.brand = brand;
     }
+
+    @Override
+    public String toString() {
+        return this.type; //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

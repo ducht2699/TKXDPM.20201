@@ -191,7 +191,7 @@ public class AdminAddStation extends javax.swing.JFrame {
             try {
                 db.insert(sql);
                 JOptionPane.showMessageDialog(this, "Inserted!");
-                MainEntry.move(this, new AdminManageStation(user, new HomeScreenAdmin(user, null)));
+                MainEntry.move(this, new AdminManageStation(user, new AdminHomeScreen(user, null)));
 //                showInfoTable();
             } catch (SQLException ex) {
                 Logger.getLogger(AdminAddStation.class.getName()).log(Level.SEVERE, null, ex);

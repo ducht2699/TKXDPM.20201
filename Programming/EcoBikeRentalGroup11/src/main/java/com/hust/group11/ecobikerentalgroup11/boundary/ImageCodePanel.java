@@ -22,12 +22,14 @@ public class ImageCodePanel extends JPanel {
 
     private BufferedImage image;
     private boolean isSet;
+    private File file;
 
     public ImageCodePanel() {
+        this.file = new File("choose-img.png");
         isSet = false;
         if (!isSet) {
             try {
-                image = ImageIO.read(new File("scan_code.jpg"));
+                image = ImageIO.read(this.file);
                 isSet = true;
             } catch (IOException ex) {
                 Logger.getLogger(ImageCodePanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -38,9 +40,14 @@ public class ImageCodePanel extends JPanel {
     public void showImage(File file) {
         try {
             image = ImageIO.read(file);
+            this.file = file;
         } catch (IOException ex) {
             System.out.println(ex);
         }
+    }
+    
+    public String getImageName() {
+        return file.getName();
     }
 
     @Override

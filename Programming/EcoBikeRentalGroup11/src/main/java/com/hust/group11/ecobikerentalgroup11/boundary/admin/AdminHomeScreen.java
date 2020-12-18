@@ -8,6 +8,7 @@ package com.hust.group11.ecobikerentalgroup11.boundary.admin;
 import com.hust.group11.ecobikerentalgroup11.Constants;
 import com.hust.group11.ecobikerentalgroup11.DataBase;
 import com.hust.group11.ecobikerentalgroup11.Entity.Bike;
+import com.hust.group11.ecobikerentalgroup11.Entity.Station;
 import com.hust.group11.ecobikerentalgroup11.Entity.Transaction;
 import com.hust.group11.ecobikerentalgroup11.Entity.User;
 import com.hust.group11.ecobikerentalgroup11.MainEntry;
@@ -27,7 +28,7 @@ import javax.swing.JOptionPane;
  *
  * @author Nguyen Thanh Long
  */
-public class HomeScreenAdmin extends javax.swing.JFrame {
+public class AdminHomeScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form HomeScreen
@@ -38,7 +39,7 @@ public class HomeScreenAdmin extends javax.swing.JFrame {
     private Transaction transaction;
     private Bike bike;
 
-    public HomeScreenAdmin(User user, JFrame backScreen) throws SQLException {
+    public AdminHomeScreen(User user, JFrame backScreen) throws SQLException {
         initComponents();
         this.user = user;
         this.backScreen = backScreen;
@@ -143,23 +144,18 @@ public class HomeScreenAdmin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(130, 130, 130)
-                .addComponent(jLabel3)
-                .addGap(107, 107, 107)
-                .addComponent(usernameLabel)
-                .addGap(37, 37, 37)
-                .addComponent(logoutButton)
-                .addGap(51, 51, 51))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(69, 69, 69)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(130, 130, 130)
+                        .addComponent(jLabel3)
+                        .addGap(107, 107, 107)
+                        .addComponent(usernameLabel)
+                        .addGap(37, 37, 37)
+                        .addComponent(logoutButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(181, 181, 181)
                         .addComponent(imageCodePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -211,7 +207,13 @@ public class HomeScreenAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnManageStationActionPerformed
 
     private void btnManageBikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageBikeActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            Station st = new Station(-1, 0, 0, 0, "", "", "");
+            MainEntry.move(this, new AdminManageBikes(this, user, st));
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminHomeScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnManageBikeActionPerformed
 
 
